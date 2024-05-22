@@ -1,0 +1,153 @@
+.home {
+  position: relative;
+  background-image: url('../../Assets/background.jpg'); /* Add your background image URL */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1; /* Ensure Home is below NavBar */
+  background-color: black;
+}
+
+.letter-container {
+  text-align: center;
+}
+
+.letter {
+  display: inline-block;
+  font-size: 4em;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  animation: drop 1s forwards; /* Default animation duration */
+  animation-timing-function: ease-in-out;
+}
+
+/* Apply different fonts to different parts if needed */
+.letter.viga {
+  font-family: 'Viga', sans-serif;
+}
+
+.letter.ultra {
+  font-family: 'Ultra', serif;
+}
+
+.letter.press-start {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.letter.monoton {
+  font-family: 'Monoton', cursive;
+}
+
+@keyframes drop {
+  from {
+    transform: translateY(-100vh) rotate(0deg); /* Start position at the top of the browser tab */
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotate(1080deg) translateX(var(--sloped-x)) rotate(var(--rotate)); /* Rotate and sloped effect */
+    opacity: 1;
+  }
+}
+
+/* Subtle sloped effect for each letter */
+.letter:nth-child(1) {
+  --sloped-x: -10px;
+  --rotate: -10deg;
+}
+
+.letter:nth-child(2) {
+  --sloped-x: -10px;
+  --rotate: 10deg;
+}
+
+.letter:nth-child(3) {
+  --sloped-x: -13px;
+  --rotate: 15deg;
+}
+
+.letter:nth-child(4) {
+  --sloped-x: -12px;
+  --rotate: -15deg;
+}
+
+.letter:nth-child(5) {
+  --sloped-x: -10px;
+  --rotate: 20deg;
+}
+
+.letter:nth-child(6) {
+  --sloped-x: -10px;
+  --rotate: -20deg;
+}
+
+.letter:nth-child(7) {
+  --sloped-x: 40px;
+  --rotate: 25deg;
+}
+
+.letter:nth-child(8) {
+  --sloped-x: -10px;
+  --rotate: -25deg;
+}
+
+.letter:nth-child(9) {
+  --sloped-x: -10px;
+  --rotate: 30deg;
+}
+
+.letter:nth-child(10) {
+  --sloped-x: -10px;
+  --rotate: -30deg;
+}
+
+.letter:nth-child(11) {
+  --sloped-x: -10px;
+  --rotate: 35deg;
+}
+
+/* Vignette effect */
+.vignette-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  animation: vignetteFade 2s infinite;
+}
+
+@keyframes vignetteFade {
+  0% { opacity: 0; }
+  50% { opacity: 0.3; } /* Semi-transparent at midpoint */
+  100% { opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .letter {
+    font-size: 3.5em;
+  }
+}
+
+@media (max-width: 900px) {
+  .letter {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 600px) {
+  .letter {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 400px) {
+  .letter {
+    font-size: 2em;
+  }
+}

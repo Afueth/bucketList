@@ -1,25 +1,27 @@
 .navbar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 60px;
-    width: 100%;
-    background-color: #020631;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .navbar svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-    transition: transform 0.3s ease; 
-  }
-  
-  .navbar svg:hover {
-    transform: scale(1.8); 
-  }
-  
- 
-  
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #020631;
+  padding: 10px 0;
+  z-index: 1000; /* Ensure NavBar is on top */
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.navbar svg {
+  fill: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.navbar svg:hover {
+  transform: scale(1.2);
+}

@@ -1,0 +1,63 @@
+/* Ensure the entire app takes the full height of the viewport and has a column layout */
+.App {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(6, 6, 6);
+  }
+  
+  /* The NavBar is fixed at the bottom, spans the full width, and uses flex for layout */
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px 0;
+    z-index: 1000; /* Ensure NavBar is on top */
+  }
+  
+  /* Each button in the NavBar is styled for accessibility and interaction */
+  .navbar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  /* SVG icons in the NavBar are styled for color and interaction */
+  .navbar svg {
+    fill: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  /* Hover effect for the SVG icons */
+  .navbar svg:hover {
+    transform: scale(1.2);
+  }
+  
+  /* The content area flexibly grows to fill the available space, with margin to avoid overlap with the NavBar */
+  .content {
+    flex: 1;
+    margin-bottom: 60px; /* Adjust if necessary to avoid content hiding behind navbar */
+    overflow-y: auto; /* Ensure content can scroll if it overflows */
+    padding: 20px; /* Padding for better layout */
+  }
+  
+  /* Responsive adjustments to ensure the layout adapts to different screen sizes */
+  @media (max-width: 600px) {
+    .navbar {
+      padding: 5px 0;
+    }
+    .navbar svg {
+      width: 24px;
+      height: 24px;
+    }
+    .content {
+      padding: 10px;
+    }
+  }
+  
