@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import './Movie.css'; // Make sure to import the CSS file
+import StarRatings from 'react-star-ratings';
 
-function Movie() {
-  const cards = Array(200).fill(null); // Create an array of 200 items for 200 cards
+function Movie({ movies }) {
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 12;
 
   // Calculate the index of the first and last card on the current page
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = movies.slice(indexOfFirstCard, indexOfLastCard);
 
   // Calculate the total number of pages
-  const totalPages = Math.ceil(cards.length / cardsPerPage);
+  const totalPages = Math.ceil(movies.length / cardsPerPage);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -39,8 +39,25 @@ function Movie() {
   return (
     <div className="movie-container">
       <div className="card-grid">
-        {currentCards.map((_, index) => (
-          <div key={index} className="card"></div>
+        {currentCards.map((movie, index) => (
+          <div key={index} className="card">
+            <img src={movie.image} alt={movie.name} className="card-image" />
+            <div className="card-details">
+              <h3>{movie.name}</h3>
+              <p>Genre: {movie.genre}</p>
+              <div className="rating">
+                <StarRatings
+                  rating={Number(movie.rating)} // Ensure rating is a number
+                  starRatedColor="yellow"
+                  numberOfStars={5}
+                  name='rating'
+                  starDimension="20px"
+                  starSpacing="2px"
+                />
+                <span className="rating-text">{Number(movie.rating)} / 5</span> {/* Ensure rating is a number */}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
       <div className="pagination">

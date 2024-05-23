@@ -1,0 +1,10 @@
+{
+  "emulators": {
+    "firestore": {
+      "port": 8081,
+      "host": "localhost",
+      "args": ["--consistency=0.9"],
+      "path": "./emulators/cloud-firestore-emulator-v1.19.6.jar"
+    }
+  }
+}

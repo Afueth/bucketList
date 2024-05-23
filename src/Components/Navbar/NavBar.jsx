@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './NavBar.css';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import MovieIcon from '@mui/icons-material/Movie';
 
@@ -25,7 +25,7 @@ function NavBar({ setActiveComponent }) {
         <MovieIcon style={{ transform: activeIcon === 'movie' ? 'scale(1.8)' : 'scale(1)' }} />
       </button>
       <button onClick={() => handleIconClick('notification')} aria-label='Notifications'>
-        <CircleNotificationsIcon style={{ transform: activeIcon === 'notification' ? 'scale(1.8)' : 'scale(1)' }} />
+        <AddCircleIcon style={{ transform: activeIcon === 'notification' ? 'scale(1.8)' : 'scale(1)' }} />
       </button>
       <button onClick={() => handleIconClick('search')} aria-label='Search'>
         <SearchIcon style={{ transform: activeIcon === 'search' ? 'scale(1.8)' : 'scale(1)' }} />
