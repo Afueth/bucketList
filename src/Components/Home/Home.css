@@ -6,13 +6,15 @@
   height: 100vh;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1; /* Ensure Home is below NavBar */
   background-color: black;
 }
 
-.letter-container {
+.letter-container,
+.sub-container {
   text-align: center;
 }
 
@@ -24,6 +26,11 @@
   opacity: 0;
   animation: drop 1s forwards; /* Default animation duration */
   animation-timing-function: ease-in-out;
+}
+
+.letter.sub {
+  font-size: 2em; /* Smaller font size for the sub text */
+  animation: subDrop 1s forwards; /* Different animation for sub text */
 }
 
 /* Apply different fonts to different parts if needed */
@@ -50,6 +57,17 @@
   }
   to {
     transform: translateY(0) rotate(1080deg) translateX(var(--sloped-x)) rotate(var(--rotate)); /* Rotate and sloped effect */
+    opacity: 1;
+  }
+}
+
+@keyframes subDrop {
+  from {
+    transform: translateY(-100vh) rotate(0deg); /* Start position at the top of the browser tab */
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotate(0deg); /* Drop straight down */
     opacity: 1;
   }
 }

@@ -56,7 +56,12 @@
   margin-top: 10px;
 }
 
-.submit-button-unique:hover {
+.submit-button-unique:disabled {
+  background-color: #888; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.submit-button-unique:hover:not(:disabled) {
   background-color: #45a049; /* Darker green */
 }
 

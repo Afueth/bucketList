@@ -12,6 +12,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore';
 function App() {
   const [activeComponent, setActiveComponent] = useState('home');
   const [movies, setMovies] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -38,14 +39,24 @@ function App() {
       case 'movie':
         return <Movie movies={movies} />;
       case 'notification':
-        return <Add addMovie={addMovie} />;
+        return <Add addMovie={addMovie} isLoggedIn={isLoggedIn} key={isLoggedIn} />;
       case 'search':
         return <Search />;
       case 'account':
-        return <Profile />;
+        return <Profile handleLogin={handleLogin} handleLogout={handleLogout} />;
       default:
         return <Home />;
     }
+  };
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    localStorage.setItem('isLoggedIn', 'true');
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
   };
 
   return (

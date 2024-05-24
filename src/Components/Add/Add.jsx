@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Add.css';
 
-function Add({ addMovie }) {
+function Add({ addMovie, isLoggedIn }) {
   const [movieName, setMovieName] = useState('');
   const [movieGenre, setMovieGenre] = useState('');
   const [movieImage, setMovieImage] = useState('');
   const [movieRating, setMovieRating] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    const isValid = movieName && movieGenre && movieImage && movieRating;
+    setIsFormValid(isValid);
+  }, [movieName, movieGenre, movieImage, movieRating]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +28,7 @@ function Add({ addMovie }) {
     setMovieRating('');
   };
 
-  return (
+  return isLoggedIn ? (
     <div className="add-form-container-unique">
       <form className="add-form-unique" onSubmit={handleSubmit}>
         <h2>Add Movie</h2>
@@ -83,8 +89,14 @@ function Add({ addMovie }) {
             step="0.1"
           />
         </div>
-        <button type="submit" className="submit-button-unique">Add Movie</button>
+        <button type="submit" className="submit-button-unique" disabled={!isFormValid}>
+          Add Movie
+        </button>
       </form>
+    </div>
+  ) : (
+    <div className="not-logged-in-message">
+      This is a Personal BucketList. Why are you here? Just Get Out!
     </div>
   );
 }

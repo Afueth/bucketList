@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Profile.css'; // Import the CSS file for styling
 
-function Profile() {
+function Profile({ handleLogin, handleLogout }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = (e) => {
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem('isLoggedIn');
+    if (loggedInStatus === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLoginSubmit = (e) => {
     e.preventDefault();
 
     const validEmail = "afuethomas@gmail.com";
@@ -14,9 +21,17 @@ function Profile() {
 
     if (email === validEmail && password === validPassword) {
       setIsLoggedIn(true);
+      localStorage.setItem('isLoggedIn', 'true');
+      handleLogin();
     } else {
       alert('Invalid email or password');
     }
+  };
+
+  const handleLogoutClick = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
+    handleLogout();
   };
 
   return (
@@ -24,9 +39,10 @@ function Profile() {
       {isLoggedIn ? (
         <div className="welcome-message">
           <h1>Welcome Afueth Thomas 😊</h1>
+          <button onClick={handleLogoutClick} className="logout-button">Logout</button>
         </div>
       ) : (
-        <form className="login-form" onSubmit={handleLogin}>
+        <form className="login-form" onSubmit={handleLoginSubmit}>
           <h2>Login</h2>
           <div className="form-group">
             <label htmlFor="email">Email</label>
